@@ -4,7 +4,7 @@ import threading
 import time
 
 # Configuración inicial de la API de Google Gemini
-API_KEY = "AIzaSyCXBTKaMLsAm9RUnYgfqbQx9G9r-MxiWCk"
+API_KEY = "AIzaSyBWyKC99hjwxNkpoYVI5fOS4EICiLHiFj0"
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
@@ -40,6 +40,10 @@ def automatizacion_continua():
             informe_generado = generar_informe(*caracteristicas)
             generando_informe = False  # Detener la generación después de completar
         time.sleep(5)  # Esperar antes de la próxima iteración
+
+if not all([filamento, resolucion, velocidad, tamano]):
+    return "Error: Faltan datos en los parámetros de impresión 3D."
+
 
 # Iniciar el hilo de automatización en segundo plano
 thread = threading.Thread(target=automatizacion_continua, daemon=True)
