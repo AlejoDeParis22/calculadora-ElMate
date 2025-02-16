@@ -1,8 +1,12 @@
-let clientes=[
-    {nombre:'Alejo', edad:22},
-    {nombre:'Carlos', edad:45},
-    {nombre:'Robin', edad:30}
-]
+let clientes = []; // Inicializamos la variable vacía
+
+fetch('clientes.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Clientes cargados:', data);
+        clientes = data; // Se llena la variable con los datos cargados
+    })
+    .catch(error => console.error('Error al cargar clientes:', error));
 
 let container = document.getElementById('signIn')
 let button = document.getElementById('button')
